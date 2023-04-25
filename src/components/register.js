@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import {loginUser} from"../utils";
+import {registerUser} from"../utils";
 
-const Login = ({ newUser }) => {
+const Register = () => {
   const [username, setUsername] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
@@ -12,12 +12,12 @@ const Login = ({ newUser }) => {
     console.log(username);
     console.log(email);
     console.log(password);
-    await loginUser(username, email, password, newUser)
+    await registerUser(username, email, password)
   };
 
   return (
-    <div className="login-container">
-      <h1>Login Below</h1>
+    <div className="register-container">
+      <h1>Register Below</h1>
 
       <form onSubmit={submitHandler}>
         <label htmlFor="username">Username:</label>
@@ -50,10 +50,10 @@ const Login = ({ newUser }) => {
           required
         />
 
-        <button type="submit">Login</button>
+        <button type="submit">Register</button>
       </form>
     </div>
   );
 };
 
-export default Login;
+export default Register;
