@@ -48,7 +48,7 @@ export const registerUser = async (username, email, password, newUser) => {
 export const authCheck = async (jwtToken) => {
   try {
     const response = await fetch("http://localhost:5001/users/authcheck", {
-      metod: "GET",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwtToken}`,
@@ -61,3 +61,71 @@ export const authCheck = async (jwtToken) => {
     console.log(error);
   }
 };
+
+
+export const getAllUsers = async (username, user, jwtToken) => {
+    try {
+      const response = await fetch("http://localhost:5001/users/getallusers", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwtToken}`,
+        },
+        
+
+      });
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  
+  export const deleteUser = async (username, jwtToken) => {
+    try {
+      const response = await fetch("http://localhost:5001/users/deleteuser", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwtToken}`,
+        },
+        body: JSON.stringify({
+            username: username,
+            }),
+
+      });
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+
+  export const updateUser = async (username, newUsername, newPassword, newEmail, jwtToken) => {
+    try {
+      const response = await fetch("http://localhost:5001/users/updateuser", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwtToken}`,
+        },
+        body: JSON.stringify({
+            username: username,
+            newUsername: newUsername,
+            newEmail: newEmail,
+            newPassword: newPassword,
+            }),
+
+      });
+      const data = await response.json();
+      console.log(data);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+   

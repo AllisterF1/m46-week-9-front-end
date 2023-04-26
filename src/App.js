@@ -1,10 +1,13 @@
 import Login from "./components/login";
 import Register from "./components/register";
+import Get from "./components/get";
+import Delete from "./components/delete";
 import "./App.css";
 import { useState, useEffect } from "react";
 
 import { getCookie } from "./common";
 import { authCheck } from "./utils";
+import Update from "./components/update";
 
 function App() {
   const [user, setUser] = useState();
@@ -27,14 +30,18 @@ function App() {
     <div className="App">
       <Login newUser={setUser} />
       {user ? (
-        <h2>Hello Welcome {user} you have logged in</h2>
+        <div className="logged-in">
+          <h2>Hello Welcome {user} you have logged in</h2>
+          <Get />
+          <Update />
+          <Delete />
+        </div>
       ) : (
         <div className="welcome">
-        <h2>Please log in or register below</h2>
-        <Register />
+          <h2>Please log in or register below</h2>
+          <Register />
         </div>
       )}
-      
     </div>
   );
 }
