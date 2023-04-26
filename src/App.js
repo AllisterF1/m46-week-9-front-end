@@ -1,24 +1,40 @@
-import Login from './components/login';
-import Register from './components/register';
-import './App.css';
-import { useState } from 'react';
+import Login from "./components/login";
+import Register from "./components/register";
+import "./App.css";
+import { useState, useEffect } from "react";
 
-
+import { getCookie } from "./common";
+import { authCheck } from "./utils";
 
 function App() {
+  const [user, setUser] = useState();
 
-  const [user, setUser] = useState()
+  useEffect(() => {
+    let jwt = getCookie("jwt_token");
+    console.log(jwt);
+
+    if (jwt !== false) {
+      loginWithToken(jwt);
+    }
+  }, []);
+
+  const loginWithToken = async (jwt) => {
+    const user = await authCheck(jwt);
+    setUser(user);
+  };
+
   return (
     <div className="App">
       <Login newUser={setUser} />
-      {user
-       ?
-      <h2>Hello Welcome {user} you have logged in</h2>
-      :
-      <h2>Please log in</h2>
-    
-     }
-    <Register />
+      {user ? (
+        <h2>Hello Welcome {user} you have logged in</h2>
+      ) : (
+        <div className="welcome">
+        <h2>Please log in or register below</h2>
+        <Register />
+        </div>
+      )}
+      
     </div>
   );
 }
