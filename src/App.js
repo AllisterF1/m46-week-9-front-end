@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { getCookie } from "./common";
 import { authCheck } from "./utils";
 import Update from "./components/update";
+import NewOrder from "./components/newOrder";
 
 function App() {
   const [user, setUser] = useState();
@@ -36,6 +37,7 @@ function App() {
         <div className="logged-in">
           <h2>Hello Welcome {user} you have logged in</h2>
           <Get jwtToken={jwt} />
+          <NewOrder jwtToken={jwt} />
           <Update />
           <Delete />
         </div>

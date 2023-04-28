@@ -62,9 +62,9 @@ export const authCheck = async (jwtToken) => {
 };
 
 export const getAllUsers = async ( jwtToken ) => {
-    console.log("!!!!!!");
-    console.log(jwtToken);
-    console.log("!!!!!!");
+  
+    
+  
   try {
     const response = await fetch("http://localhost:5001/users/getallusers", {
       method: "GET",
@@ -127,3 +127,29 @@ export const updateUser = async (
     console.log(error);
   }
 };
+
+
+export const newOrder = async( jwtToken ) => {
+  console.log("!!!!!indexjs token!!!!!");
+  console.log(jwtToken);
+  console.log("!!!!!^^^^^indexjs token^^^^^!!!!!");
+  try {
+    const response = await fetch("http://localhost:5001/orders/new", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwtToken}`,
+      },
+     });
+    const data = await response.json();
+    console.log(data);
+    console.log("!!!!!!!front end index func!!!!!!!");
+    return data;
+  } catch (error) {
+    console.log("!!!!!!!ERROR front end index func ERROR!!!!!!!");
+    console.log(error);
+  }
+
+}
+
+

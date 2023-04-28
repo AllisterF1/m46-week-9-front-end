@@ -7,9 +7,8 @@ const Get = ({ jwtToken }) => {
 
   const handleGetAllUsers = async () => {
     try {
-        console.log("*******")
-        console.log(jwtToken)
-        console.log("*******")
+      console.log(jwtToken);
+
       const data = await getAllUsers(jwtToken);
       setUsers(data.users);
     } catch (error) {
