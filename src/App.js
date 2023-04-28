@@ -12,6 +12,8 @@ import Update from "./components/update";
 function App() {
   const [user, setUser] = useState();
 
+  const [jwt, setJwt] = useState();
+
   useEffect(() => {
     let jwt = getCookie("jwt_token");
     console.log(jwt);
@@ -24,6 +26,7 @@ function App() {
   const loginWithToken = async (jwt) => {
     const user = await authCheck(jwt);
     setUser(user);
+    setJwt(jwt);
   };
 
   return (
@@ -32,7 +35,7 @@ function App() {
       {user ? (
         <div className="logged-in">
           <h2>Hello Welcome {user} you have logged in</h2>
-          <Get />
+          <Get jwtToken={jwt} />
           <Update />
           <Delete />
         </div>

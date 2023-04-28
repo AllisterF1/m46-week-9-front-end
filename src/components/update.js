@@ -4,15 +4,14 @@ import { updateUser } from "../utils";
 
 const Update = ({ jwtToken }) => {
   const [username, setUsername] = useState();
-  const [newUsername, setNewUsername] = useState();
-  const [newEmail, setNewEmail] = useState();
-  const [newPassword, setNewPassword] = useState();
+  const [updateKey, setUpdateKey] = useState();
+  const [updateValue, setUpdateValue] = useState();
 
   const submitHandler = async (e) => {
     e.preventDefault();
     console.log(username);
 
-    await updateUser(username);
+    await updateUser(username, updateKey, updateValue, jwtToken);
   };
 
   return (
@@ -30,28 +29,19 @@ const Update = ({ jwtToken }) => {
           required
         />
 
-<label htmlFor="new-username">New Username:</label>
-        <input
-          onChange={(e) => setNewUsername(e.target.value)}
-          type="text"
-          id="new-username"
-          name="username"
-        />
+        <label htmlFor="update-key">Update Key:</label>
+        <select id="update-key" onChange={(e) => setUpdateKey(e.target.value)}>
+          <option value="email">Email</option>
+          <option value="username">Username</option>
+          <option value="password">Password</option>
+        </select>
 
-<label htmlFor="new-email">New email:</label>
+        <label htmlFor="update-value">Update Value:</label>
         <input
-          onChange={(e) => setNewEmail(e.target.value)}
+          onChange={(e) => setUpdateValue(e.target.value)}
           type="text"
-          id="-new-email"
+          id="update-value"
           name="username"
-        />
-
-<label htmlFor="new-password">New password:</label>
-        <input
-          onChange={(e) => setNewPassword(e.target.value)}
-          type="password"
-          id="new-password"
-          name="password"
         />
 
         <button type="submit">Update User</button>
