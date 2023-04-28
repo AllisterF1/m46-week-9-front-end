@@ -1,35 +1,30 @@
-// import React from "react";
-// import { useState } from "react";
-// import { newOrder } from "../utils";
+import React from "react";
+import { useState } from "react";
+import { getAllOrders } from "../utils";
 
-// const GetOrders = ({ jwtToken }) => {
-//   const [orders, setOrders] = useState([]);
+const GetOrders = ({ jwtToken }) => {
+  const [orders, setOrders] = useState([]);
 
-//   const handleGetAllUsers = async () => {
-//     try {
-//         console.log("*******")
-//         console.log(jwtToken)
-//         console.log("*******")
-//       const data = await getAllUsers(jwtToken);
-//       setUsers(data.users);
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+  const handleGetOrders = async () => {
+    try {
+      const data = await getAllOrders(jwtToken);
+      setOrders(data.orders);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-//   return (
-//     <div className="get-container">
-//       <h1>Get Request</h1>
-//       <button onClick={handleGetAllUsers}>Get All Users</button>
-//       <ul>
-//         {users.map((user) => (
-//           <li key={user.id}>{user.username}</li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
+  return (
+    <div className="get-container">
+      <h1>Get Request</h1>
+      <button onClick={handleGetOrders}>See your orders</button>
+      <ul>
+        {orders.map((orders) => (
+          <li key={orders.id}>{orders.id}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
-// export default {
-//     GetOrders
-// };
+export default GetOrders;

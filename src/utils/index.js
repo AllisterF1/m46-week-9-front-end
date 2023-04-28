@@ -17,7 +17,7 @@ export const loginUser = async (username, email, password, newUser) => {
     console.log(data);
     newUser(data.user.username);
     writeCookie("jwt_token", data.user.token, 7);
-    writeCookie("userId", data.user.username, 7)
+    writeCookie("userId", data.user.username, 7);
   } catch (error) {
     console.log(error);
   }
@@ -61,10 +61,7 @@ export const authCheck = async (jwtToken) => {
   }
 };
 
-export const getAllUsers = async ( jwtToken ) => {
-  
-    
-  
+export const getAllUsers = async (jwtToken) => {
   try {
     const response = await fetch("http://localhost:5001/users/getallusers", {
       method: "GET",
@@ -128,11 +125,9 @@ export const updateUser = async (
   }
 };
 
-
-export const newOrder = async( jwtToken ) => {
-  console.log("!!!!!indexjs token!!!!!");
+export const newOrder = async (jwtToken) => {
   console.log(jwtToken);
-  console.log("!!!!!^^^^^indexjs token^^^^^!!!!!");
+
   try {
     const response = await fetch("http://localhost:5001/orders/new", {
       method: "POST",
@@ -140,16 +135,29 @@ export const newOrder = async( jwtToken ) => {
         "Content-Type": "application/json",
         Authorization: `Bearer ${jwtToken}`,
       },
-     });
+    });
     const data = await response.json();
     console.log(data);
-    console.log("!!!!!!!front end index func!!!!!!!");
+
     return data;
   } catch (error) {
-    console.log("!!!!!!!ERROR front end index func ERROR!!!!!!!");
     console.log(error);
   }
+};
 
-}
-
-
+export const getAllOrders = async (jwtToken) => {
+  try {
+    const response = await fetch("http://localhost:5001/orders/getorders", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

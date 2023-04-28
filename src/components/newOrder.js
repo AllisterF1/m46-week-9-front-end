@@ -1,15 +1,14 @@
 import React from "react";
-import { useState } from "react";
-import {newOrder} from"../utils";
+import { newOrder } from "../utils";
 
-
-const NewOrder = ({jwtToken}) => {
-  const [order, setOrder] = useState();
+const NewOrder = ({ jwtToken }) => {
   const newOrderHandler = async (e) => {
-    console.log("!!!newOrderjs token!!!");
-    console.log(jwtToken);
-    console.log("!!!^^^^^^^^^newOrderjs token^^^^^^^^^^!!!");
-    await newOrder(jwtToken);
+    try {
+      await newOrder(jwtToken);
+      window.alert(`Order placed`);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (

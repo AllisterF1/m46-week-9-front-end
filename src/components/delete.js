@@ -1,16 +1,15 @@
 import React from "react";
 import { useState } from "react";
-import { deleteUser } from"../utils";
+import { deleteUser } from "../utils";
 
 const Delete = ({ jwtToken }) => {
   const [username, setUsername] = useState();
-
 
   const submitHandler = async (e) => {
     e.preventDefault();
     console.log(username);
 
-    await deleteUser(username)
+    await deleteUser(username);
   };
 
   return (
@@ -27,8 +26,6 @@ const Delete = ({ jwtToken }) => {
           name="username"
           required
         />
-
-       
 
         <button type="submit">Delete User</button>
       </form>
